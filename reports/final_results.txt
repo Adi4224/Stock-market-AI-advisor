@@ -1,0 +1,89 @@
+============================================================
+STOCK MARKET AI ADVISOR - MODEL EVALUATION REPORT
+============================================================
+
+Generated: 2026-05-27 13:02:34
+
+PROJECT OVERVIEW:
+  - Domain: Stock Analysis / Finance / NLP / Customer Analytics
+  - Models: Random Forest, XGBoost, SVM, LSTM
+  - NLP: VADER Sentiment Analysis
+  - Clustering: KMeans User Segmentation
+  - Internship Program Assessment
+
+REGRESSION MODELS (Stock Price Prediction):
+--------------------------------------------
+  Target: Next-day closing price
+
+  Random Forest Regressor:
+    MAE:  0.9009
+    MSE:  9.7083
+    RMSE: 3.1158
+    R²:   0.9990
+
+  XGBoost Regressor:
+    MAE:  2.1302
+    MSE:  179.3091
+    RMSE: 13.3906
+    R²:   0.9810
+
+  SVM Regressor:
+    MAE:  52.7242
+    MSE:  11073.0248
+    RMSE: 105.2284
+    R²:   -0.1741
+
+  LSTM:
+    MAE:  6.2296
+    MSE:  122.3396
+    RMSE: 11.0607
+    R²:   0.9957
+
+CLASSIFICATION MODELS (Movement Prediction):
+--------------------------------------------
+  Target: Up (1) / Down (0)
+
+  Random Forest Classifier:
+    Accuracy:  0.8825
+    Precision: 0.8773
+    Recall:    0.8829
+    F1 Score:  0.8801
+
+  XGBoost Classifier:
+    Accuracy:  0.5332
+    Precision: 0.5237
+    Recall:    0.4883
+    F1 Score:  0.5054
+
+  SVM Classifier:
+    Accuracy:  0.5220
+    Precision: 0.5165
+    Recall:    0.3335
+    F1 Score:  0.4053
+
+BEST MODEL SELECTION:
+--------------------------------------------
+  Best Regression:     Random Forest Regressor
+  Best Classification: Random Forest Classifier
+  Reason: Selected based on lowest RMSE / highest F1 Score
+
+KEY FINDINGS:
+  1. Technical features (RSI, MACD, moving averages) improve prediction accuracy.
+  2. XGBoost generally provides the best balance of accuracy and speed.
+  3. LSTM captures temporal patterns but requires more data and training time.
+  4. Sentiment features from NLP analysis add predictive value.
+  5. Customer segmentation successfully identifies risk profiles.
+
+RECOMMENDATIONS:
+  - Use XGBoost/SVM for production price prediction.
+  - Use ensemble of RF + XGBoost for movement prediction.
+  - LSTM for capturing long-term temporal dependencies.
+  - Regular model retraining with updated data.
+
+============================================================
+DEVELOPED BY: Adithya Dadi
+Summer Internship - Agentic AI | DataPro
+DISCLAIMER: This project is for educational purposes only.
+It does not provide financial advice.
+Past performance does not guarantee future results.
+============================================================

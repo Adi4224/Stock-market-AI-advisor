@@ -1,0 +1,27 @@
+{
+  "model_name": "LSTM Regressor",
+  "mae": 6.229586866272567,
+  "mse": 122.33963891919942,
+  "rmse": 11.060725062996521,
+  "r2": 0.9957037535400752,
+  "epochs_trained": 5,
+  "lookback": 60,
+  "features": [
+    "Open",
+    "High",
+    "Low",
+    "Close",
+    "Volume",
+    "daily_return",
+    "ma_7",
+    "ma_14",
+    "ma_30",
+    "ma_50",
+    "volatility",
+    "rsi",
+    "macd",
+    "macd_signal",
+    "volume_change",
+    "price_range"
+  ]
+}

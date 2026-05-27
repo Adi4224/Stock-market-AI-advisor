@@ -1,0 +1,33 @@
+{
+    "model_name": "Support Vector Classifier",
+    "best_parameters": {
+        "C": 1.0,
+        "gamma": "scale"
+    },
+    "metrics": {
+        "accuracy": 0.499,
+        "precision": 0.5128,
+        "recall": 0.5984,
+        "f1_score": 0.5523
+    },
+    "features_used": [
+        "Open",
+        "High",
+        "Low",
+        "Close",
+        "Volume",
+        "daily_return",
+        "ma_7",
+        "ma_14",
+        "ma_30",
+        "ma_50",
+        "volatility",
+        "rsi",
+        "macd",
+        "macd_signal",
+        "volume_change",
+        "price_range"
+    ],
+    "training_samples": 10000,
+    "test_samples": 5000
+}

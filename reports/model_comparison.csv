@@ -1,0 +1,8 @@
+model_name,task,mae,mse,rmse,r2,accuracy,precision,recall,f1
+Random Forest Regressor,Regression,0.9009,9.7083,3.1158,0.999,,,,
+XGBoost Regressor,Regression,2.1302,179.3091,13.3906,0.981,,,,
+SVM Regressor,Regression,52.7242,11073.0248,105.2284,-0.1741,,,,
+LSTM,Regression,6.2296,122.3396,11.0607,0.9957,,,,
+Random Forest Classifier,Classification,,,,,0.8825,0.8773,0.8829,0.8801
+XGBoost Classifier,Classification,,,,,0.5332,0.5237,0.4883,0.5054
+SVM Classifier,Classification,,,,,0.522,0.5165,0.3335,0.4053

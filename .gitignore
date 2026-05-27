@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data files (large)
+data/raw/kaggle_stock_data/
+data/updated/yfinance_updates/*.csv
+data/processed/*.csv
+!data/raw/news_data.csv
+!data/raw/user_behavior.csv
+
+# Models (large binary files)
+models/*.pkl
+models/*.keras
+models/*.h5
+models/*.joblib
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/
+
+# Logs
+*.log

@@ -1,0 +1,11 @@
+{
+  "mae": 17.1556,
+  "mse": 7769.9733,
+  "rmse": 88.1475,
+  "r2": 0.8352,
+  "best_params": {
+    "learning_rate": 0.1,
+    "max_depth": 5,
+    "n_estimators": 150
+  }
+}

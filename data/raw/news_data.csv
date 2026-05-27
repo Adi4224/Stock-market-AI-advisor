@@ -1,0 +1,149 @@
+date,ticker,headline,source
+2023-01-05,AAPL,Apple kicks off 2023 with strong iPhone 14 demand in emerging markets,Reuters
+2023-01-12,GOOGL,Google announces major restructuring to focus on AI initiatives,Bloomberg
+2023-01-18,MSFT,Microsoft invests $10 billion in OpenAI partnership,CNBC
+2023-01-25,AMZN,Amazon plans to lay off 18000 workers amid economic slowdown,WSJ
+2023-02-02,TSLA,Tesla reports record Q4 deliveries beating analyst expectations,MarketWatch
+2023-02-10,META,Meta shares surge 20% after cost-cutting measures announced,Yahoo Finance
+2023-02-15,NVDA,NVIDIA reports explosive growth in data center revenue,Reuters
+2023-02-22,JPM,JPMorgan Chase posts record annual profit for 2022,Bloomberg
+2023-03-01,BAC,Bank of America faces headwinds from rising interest rates,CNBC
+2023-03-08,JNJ,Johnson and Johnson announces plan to split into two companies,WSJ
+2023-03-15,V,Visa reports strong cross-border transaction growth,MarketWatch
+2023-03-22,WMT,Walmart expands grocery delivery service to 3000 new locations,Yahoo Finance
+2023-03-29,PG,Procter and Gamble raises dividend for 67th consecutive year,Reuters
+2023-04-05,UNH,UnitedHealth Group revenue exceeds expectations in Q1,Bloomberg
+2023-04-12,HD,Home Depot sees mixed results as housing market cools,CNBC
+2023-04-20,AAPL,Apple faces antitrust probe in European Union over App Store practices,WSJ
+2023-05-03,GOOGL,Google launches Bard AI chatbot to compete with ChatGPT,MarketWatch
+2023-05-10,MSFT,Microsoft Teams reaches 300 million monthly active users,Yahoo Finance
+2023-05-18,AMZN,Amazon Web Services maintains cloud market leadership position,Reuters
+2023-05-25,TSLA,Tesla cuts prices across all models to boost demand,Bloomberg
+2023-06-01,META,Meta launches Threads app gaining 100 million users in days,CNBC
+2023-06-08,NVDA,NVIDIA market cap crosses $1 trillion on AI chip demand,WSJ
+2023-06-15,JPM,JPMorgan acquires First Republic Bank assets in FDIC deal,MarketWatch
+2023-06-22,BAC,Bank of America launches new digital banking platform,Yahoo Finance
+2023-06-30,JNJ,Johnson and Johnson wins key talc lawsuit reducing legal risks,Reuters
+2023-07-07,V,Visa expands cryptocurrency payment capabilities worldwide,Bloomberg
+2023-07-14,WMT,Walmart invests in supply chain automation and robotics,CNBC
+2023-07-21,PG,Procter and Gamble reports slower growth amid inflation pressures,WSJ
+2023-07-28,UNH,UnitedHealth faces Congressional scrutiny over healthcare costs,MarketWatch
+2023-08-04,HD,Home Depot warns of softer consumer spending in second half,Yahoo Finance
+2023-08-11,AAPL,Apple Vision Pro unveiled at WWDC generating mixed reactions,Reuters
+2023-08-18,GOOGL,Google Cloud revenue growth accelerates beating estimates,Bloomberg
+2023-08-25,MSFT,Microsoft reports strong Azure cloud growth in fiscal Q4,CNBC
+2023-09-01,AMZN,Amazon expands same-day delivery to 50 new metro areas,WSJ
+2023-09-08,TSLA,Tesla Cybertruck production begins after years of delays,MarketWatch
+2023-09-15,META,Meta AI research team makes breakthrough in language models,Yahoo Finance
+2023-09-22,NVDA,NVIDIA unveils next-generation AI chips at GTC conference,Reuters
+2023-09-29,JPM,JPMorgan CEO warns of geopolitical risks to global economy,Bloomberg
+2023-10-06,BAC,Bank of America reports unrealized losses on bond portfolio,CNBC
+2023-10-13,JNJ,Johnson and Johnson consumer health spin-off Kenvue goes public,WSJ
+2023-10-20,V,Visa quarterly revenue grows 11% driven by travel spending,MarketWatch
+2023-10-27,WMT,Walmart raises full-year guidance on strong grocery sales,Yahoo Finance
+2023-11-03,PG,Procter and Gamble sees organic sales growth slow to 6 percent,Reuters
+2023-11-10,UNH,UnitedHealth Group completes major healthcare acquisition,Bloomberg
+2023-11-17,HD,Home Depot beats earnings estimates despite housing slowdown,CNBC
+2023-11-24,AAPL,Apple reports iPhone 15 sales below expectations in China market,WSJ
+2023-12-01,GOOGL,Google agrees to settle antitrust case over app store practices,MarketWatch
+2023-12-08,MSFT,Microsoft named leader in Gartner cloud infrastructure report,Yahoo Finance
+2023-12-15,AMZN,Amazon holiday season sales break records with AI-powered recommendations,Reuters
+2023-12-22,TSLA,Tesla shares drop on concerns about EV demand slowdown in 2024,Bloomberg
+2024-01-05,META,Meta stock rallies as advertising revenue rebounds strongly,CNBC
+2024-01-12,NVDA,NVIDIA stock surges on AI infrastructure spending forecasts,WSJ
+2024-01-19,JPM,JPMorgan posts record annual revenue of $162 billion,MarketWatch
+2024-01-26,BAC,Bank of America digital banking users surpass 45 million,Yahoo Finance
+2024-02-02,JNJ,Johnson and Johnson pipeline shows promising cancer drug results,Reuters
+2024-02-09,V,Visa reports strong international transaction volume growth,Bloomberg
+2024-02-16,WMT,Walmart completes acquisition of Vizio to boost ad business,CNBC
+2024-02-23,PG,Procter and Gamble maintains market share despite price increases,WSJ
+2024-03-01,UNH,UnitedHealth cybersecurity incident disrupts healthcare payments,MarketWatch
+2024-03-08,HD,Home Depot announces $15 billion share buyback program,Yahoo Finance
+2024-03-15,AAPL,Apple faces DOJ antitrust lawsuit over smartphone monopoly,Reuters
+2024-03-22,GOOGL,Google Gemini AI model shows significant improvements over GPT-4,Bloomberg
+2024-03-29,MSFT,Microsoft Copilot adoption accelerates across enterprise customers,CNBC
+2024-04-05,AMZN,Amazon invests $4 billion in AI startup Anthropic,WSJ
+2024-04-12,TSLA,Tesla recalls 3900 Cybertrucks over accelerator pedal issue,MarketWatch
+2024-04-19,META,Meta launches enhanced AI features across Instagram and WhatsApp,Yahoo Finance
+2024-04-26,NVDA,NVIDIA Blackwell GPU platform sees overwhelming customer demand,Reuters
+2024-05-03,JPM,JPMorgan raises concerns about commercial real estate exposure,Bloomberg
+2024-05-10,BAC,Bank of America expands wealth management services globally,CNBC
+2024-05-17,JNJ,Johnson and Johnson receives FDA approval for new immunology drug,WSJ
+2024-05-24,V,Visa partners with fintech startups to expand payment innovation,MarketWatch
+2024-05-31,WMT,Walmart reports strong e-commerce growth of 22 percent in Q1,Yahoo Finance
+2024-06-07,PG,Procter and Gamble launches sustainable packaging initiative,Reuters
+2024-06-14,UNH,UnitedHealth Group CEO testifies before Congress on healthcare reform,Bloomberg
+2024-06-21,HD,Home Depot sees improvement in professional customer segment,CNBC
+2024-06-28,AAPL,Apple Intelligence announced at WWDC bringing AI to iPhone,WSJ
+2024-07-05,GOOGL,Google Search market share faces pressure from AI competitors,MarketWatch
+2024-07-12,MSFT,Microsoft cloud revenue crosses $100 billion annual run rate,Yahoo Finance
+2024-07-19,AMZN,Amazon Prime Day 2024 sets new sales record globally,Reuters
+2024-07-26,TSLA,Tesla robotaxi unveil delayed raising investor concerns,Bloomberg
+2024-08-02,META,Meta Reality Labs losses exceed $4 billion in Q2 2024,CNBC
+2024-08-09,NVDA,NVIDIA becomes most valuable company surpassing Apple briefly,WSJ
+2024-08-16,JPM,JPMorgan warns of potential recession risks in late 2024,MarketWatch
+2024-08-23,BAC,Bank of America net interest income beats expectations,Yahoo Finance
+2024-08-30,JNJ,Johnson and Johnson MedTech division shows strong surgical robot sales,Reuters
+2024-09-06,V,Visa announces new AI-powered fraud detection system,Bloomberg
+2024-09-13,WMT,Walmart expands healthcare services with in-store clinics,CNBC
+2024-09-20,PG,Procter and Gamble reports volume growth returning positive territory,WSJ
+2024-09-27,UNH,UnitedHealth raises full-year guidance on Optum growth,MarketWatch
+2024-10-04,HD,Home Depot completes SRS Distribution acquisition for $18 billion,Yahoo Finance
+2024-10-11,AAPL,Apple iPhone 16 launches with strong demand for AI features,Reuters
+2024-10-18,GOOGL,Google Cloud achieves profitability milestone in Q3 2024,Bloomberg
+2024-10-25,MSFT,Microsoft reports slowest Azure growth amid market concerns,CNBC
+2024-11-01,AMZN,Amazon launches new AI shopping assistant across all markets,WSJ
+2024-11-08,TSLA,Tesla stock surges following favorable political developments,MarketWatch
+2024-11-15,META,Meta WhatsApp reaches 3 billion monthly active users,Yahoo Finance
+2024-11-22,NVDA,NVIDIA Q3 revenue exceeds $35 billion shattering estimates,Reuters
+2024-11-29,JPM,JPMorgan projects strong 2025 outlook for investment banking,Bloomberg
+2024-12-06,BAC,Bank of America faces challenges from flattening yield curve,CNBC
+2024-12-13,JNJ,Johnson and Johnson innovative medicine division revenue grows 8 percent,WSJ
+2024-12-20,V,Visa holiday spending data shows resilient consumer demand,MarketWatch
+2025-01-10,WMT,Walmart begins 2025 with optimistic same-store sales guidance,Yahoo Finance
+2025-01-17,PG,Procter and Gamble raises prices again citing raw material costs,Reuters
+2025-01-24,UNH,UnitedHealth Group revenue exceeds $400 billion for first time,Bloomberg
+2025-01-31,HD,Home Depot sees early signs of housing market recovery,CNBC
+2025-02-07,AAPL,Apple reports record services revenue of $26 billion in Q1,WSJ
+2025-02-14,GOOGL,Google faces renewed antitrust remedies including potential breakup,MarketWatch
+2025-02-21,MSFT,Microsoft Copilot generates $10 billion in annual revenue,Yahoo Finance
+2025-02-28,AMZN,Amazon Web Services launches new AI training infrastructure,Reuters
+2025-03-07,TSLA,Tesla expands Megapack energy storage business globally,Bloomberg
+2025-03-14,META,Meta launches next generation Ray-Ban smart glasses with AI,CNBC
+2025-03-21,NVDA,NVIDIA unveils Rubin architecture at GTC 2025 conference,WSJ
+2025-03-28,JPM,JPMorgan reports strong trading revenue amid market volatility,MarketWatch
+2025-04-04,BAC,Bank of America digital lending platform sees record adoption,Yahoo Finance
+2025-04-11,JNJ,Johnson and Johnson announces breakthrough Alzheimer treatment results,Reuters
+2025-04-18,V,Visa reports acceleration in contactless payment adoption globally,Bloomberg
+2025-04-25,WMT,Walmart AI-powered inventory management reduces waste by 30 percent,CNBC
+2025-05-02,PG,Procter and Gamble faces competitive pressure in beauty segment,WSJ
+2025-05-09,UNH,UnitedHealth navigates regulatory changes in Medicare Advantage,MarketWatch
+2025-05-16,HD,Home Depot pro segment shows resilience amid economic uncertainty,Yahoo Finance
+2025-05-23,AAPL,Apple announces new AI chip development for future devices,Reuters
+2025-06-06,GOOGL,Google Search integrates Gemini AI across all query types,Bloomberg
+2025-06-13,MSFT,Microsoft Azure OpenAI service revenue doubles year over year,CNBC
+2025-06-20,AMZN,Amazon drone delivery expands to 20 US cities in 2025,WSJ
+2025-06-27,TSLA,Tesla Full Self Driving reaches Level 4 autonomy in select markets,MarketWatch
+2025-07-04,META,Meta AI assistant becomes most used AI chatbot worldwide,Yahoo Finance
+2025-07-11,NVDA,NVIDIA data center revenue surpasses $40 billion quarterly,Reuters
+2025-07-18,JPM,JPMorgan leads global investment banking league tables at midyear,Bloomberg
+2025-08-01,BAC,Bank of America wealth management AUM reaches $4 trillion,CNBC
+2025-08-15,JNJ,Johnson and Johnson surgical robotics platform gains FDA clearance,WSJ
+2025-08-29,V,Visa and Mastercard face new interchange fee regulations in EU,MarketWatch
+2025-09-12,WMT,Walmart health division faces strategic review and potential sale,Yahoo Finance
+2025-09-26,PG,Procter and Gamble acquires high-growth skincare brand for $5 billion,Reuters
+2025-10-10,UNH,UnitedHealth Optum division revenue exceeds $250 billion annually,Bloomberg
+2025-10-24,HD,Home Depot reports strongest same-store sales growth in two years,CNBC
+2025-11-07,AAPL,Apple foldable iPhone rumors intensify ahead of 2026 launch,WSJ
+2025-11-21,GOOGL,Google Waymo robotaxi service expands to 15 US metro areas,MarketWatch
+2025-12-05,MSFT,Microsoft announces carbon negative milestone ahead of 2030 target,Yahoo Finance
+2025-12-19,AMZN,Amazon Q4 holiday sales expected to exceed $200 billion globally,Reuters
+2026-01-09,TSLA,Tesla begins 2026 with new affordable Model 2 launch announcement,Bloomberg
+2026-01-23,META,Meta revenue from AI advertising tools grows 45 percent in 2025,CNBC
+2026-02-06,NVDA,NVIDIA remains AI chip market leader with 85 percent market share,WSJ
+2026-02-20,JPM,JPMorgan reports strong Q4 2025 results with record net income,MarketWatch
+2026-03-06,BAC,Bank of America expands into digital asset custody services,Yahoo Finance
+2026-03-20,JNJ,Johnson and Johnson oncology pipeline receives multiple breakthrough designations,Reuters
+2026-04-03,V,Visa real-time payments network processes 1 billion daily transactions,Bloomberg
+2026-04-17,WMT,Walmart automation initiative creates 10000 new tech jobs,CNBC
+2026-05-01,PG,Procter and Gamble reports steady organic growth across all segments,WSJ

@@ -1,0 +1,15 @@
+{
+    "model_name": "SVM Regressor",
+    "best_params": {
+        "C": 10,
+        "epsilon": 0.05,
+        "gamma": "scale",
+        "kernel": "rbf"
+    },
+    "metrics": {
+        "mae": 13.136260389248914,
+        "mse": 429.3616084769562,
+        "rmse": 20.721042649368687,
+        "r2": -3.5359327381301613
+    }
+}
