@@ -114,27 +114,57 @@ def render():
             st.warning(f"Could not load historical chart: {e}")
 
         with st.expander("ℹ️ Model Details & Confidence Explanation", expanded=True):
+            direction_desc = "positive (price increase)" if movement == "Up" else "negative (price decrease)"
+            prob_desc = (
+                "strong directional conviction" if prob >= 0.70 
+                else "moderate conviction" if prob >= 0.55 
+                else "weak conviction (high market noise/indecision)"
+            )
+            
+            r2_scores = {
+                'Random Forest': 0.9990,
+                'Xgb': 0.9810,
+                'Xgboost': 0.9810,
+                'SVM (SVR)': -0.1741,
+                'LSTM': 0.9957
+            }
+            active_model_name = price_result.get('model_used', model)
+            r2_val = r2_scores.get(active_model_name, 0.5)
+
             st.markdown(f"""
-            ### 📊 Prediction Metadata
-            * **Model Architecture**: `{price_result.get('model_used', model)}`
-            * **Prediction Target Date**: `{price_result.get('prediction_date', 'N/A')}`
-            * **Price Prediction Confidence**: **{price_result.get('confidence', 'N/A')}**
+            ### 📊 Live Prediction Insights for `{ticker}` ({active_model_name})
             * **Ticker Symbol**: `{ticker}`
+            * **Prediction Target Date**: `{price_result.get('prediction_date', 'N/A')}`
+            * **Directional Forecast**: Predicted to move **{movement}** tomorrow with **{prob:.1%}** certainty.
+            * **Price Target Forecast**: Predicted to close at **{disp.get('predicted_price', format_currency(price_result.get('predicted_price', 0)))}** (**{change:+.2f}%** expected change) with **{price_result.get('confidence', 'N/A')}** confidence.
 
             ---
 
             ### 🧠 Why are there two different confidence/probability scores?
-            The AI prediction pipeline uses **two independent specialized machine learning models** working in tandem to give you a complete picture:
+            The AI prediction pipeline uses **two independent specialized machine learning models** working in tandem:
 
-            1. **Directional Certainty (Top Badge - `{prob:.1%}`):**
-               * **Model**: **Movement Classifier** (e.g., Random Forest or XGBoost Classifier).
-               * **Purpose**: Solves a binary classification problem: *Will the stock close higher (UP) or lower (DOWN) tomorrow than today's close?*
-               * **Interpretation**: The percentage shows the model's class probability certainty. For example, a **{prob:.1%} Down** prediction means the model estimates a `{prob:.1%}` probability of a negative return tomorrow. Values closer to 50% indicate high market indecision, whereas values closer to 100% indicate strong directional conviction.
+            1. **Directional Certainty ({move_emoji} `{prob:.1%}`):**
+               * **Model**: **Movement Classifier** (solves a binary classification problem: *Will the price rise or fall tomorrow?*).
+               * **Live Application**: The classifier predicts tomorrow's direction as **{movement}**, estimating a **{prob:.1%}** probability of a **{direction_desc}** return tomorrow.
+               * **Insight**: This represents **{prob_desc}** because it falls within the classifier thresholds.
 
             2. **Price Level Confidence (Model Details - `{price_result.get('confidence', 'N/A')}`):**
-               * **Model**: **Price Regressor** (e.g., Random Forest or XGBoost Regressor).
-               * **Purpose**: Solves a continuous regression problem: *What will tomorrow's exact closing price be in {currency}?*
-               * **Interpretation**: The level (**High**, **Medium**, or **Low**) is dynamically computed by combining the model's **historical validation accuracy ($R^2$ score)** with the **predicted volatility**. For instance, `{price_result.get('model_used', model)}` has an extremely high baseline $R^2$ of **98.10%** (or **99.90%** for Random Forest) on test datasets. If the model predicts a stable, low-volatility price shift, it receives **High Confidence**. If it predicts an unusually volatile spike or uses a lower-performing model (like SVM), the confidence automatically drops.
+               * **Model**: **Price Regressor** (solves a continuous regression problem: *What will tomorrow's exact closing price be in {currency}?*).
+               * **Live Application**: The confidence rating is **{price_result.get('confidence', 'N/A')}**, based on the model's historical baseline accuracy of **{r2_val:.2%}** ($R^2$ score) on test data and the predicted price shift of **{change:+.2f}%**.
+
+            ---
+
+            ### 📐 Model Confidence Classification Thresholds
+            Here are the mathematical thresholds used by the system to classify confidence:
+
+            | Model Type | Confidence Rating | Mathematical Threshold Rules |
+            | :--- | :--- | :--- |
+            | **Price Regressor** (Closing Price) | **🟢 High** | Historical $R^2 \\ge 95\\%$ AND Expected Price Swing $\\le 6\\%$ |
+            | | **🟡 Medium** | Historical $R^2 \\ge 80\\%$ AND Expected Price Swing $\\le 12\\%$ |
+            | | **🔴 Low** | Historical $R^2 < 80\\%$ OR Expected Price Swing $> 12\\%$ |
+            | **Movement Classifier** (Up/Down) | **🟢 High** | Classifier probability certainty $\\ge 70\\%$ |
+            | | **🟡 Medium** | Classifier probability certainty between $55\\%$ and $70\\%$ |
+            | | **🔴 Low** | Classifier probability certainty $< 55\\%$ |
             """)
 
         st.markdown(f'<div class="disclaimer-banner">{get_disclaimer_text()}</div>', unsafe_allow_html=True)
