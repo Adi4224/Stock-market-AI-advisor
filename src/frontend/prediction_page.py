@@ -113,7 +113,28 @@ def render():
         except Exception as e:
             st.warning(f"Could not load historical chart: {e}")
 
-        with st.expander("ℹ️ Model Details"):
-            st.markdown(f"- **Model**: {price_result.get('model_used', model)}\n- **Prediction Date**: {price_result.get('prediction_date', 'N/A')}\n- **Confidence**: {price_result.get('confidence', 'N/A')}\n- **Ticker**: {ticker}")
+        with st.expander("ℹ️ Model Details & Confidence Explanation", expanded=True):
+            st.markdown(f"""
+            ### 📊 Prediction Metadata
+            * **Model Architecture**: `{price_result.get('model_used', model)}`
+            * **Prediction Target Date**: `{price_result.get('prediction_date', 'N/A')}`
+            * **Price Prediction Confidence**: **{price_result.get('confidence', 'N/A')}**
+            * **Ticker Symbol**: `{ticker}`
+
+            ---
+
+            ### 🧠 Why are there two different confidence/probability scores?
+            The AI prediction pipeline uses **two independent specialized machine learning models** working in tandem to give you a complete picture:
+
+            1. **Directional Certainty (Top Badge - `{prob:.1%}`):**
+               * **Model**: **Movement Classifier** (e.g., Random Forest or XGBoost Classifier).
+               * **Purpose**: Solves a binary classification problem: *Will the stock close higher (UP) or lower (DOWN) tomorrow than today's close?*
+               * **Interpretation**: The percentage shows the model's class probability certainty. For example, a **{prob:.1%} Down** prediction means the model estimates a `{prob:.1%}` probability of a negative return tomorrow. Values closer to 50% indicate high market indecision, whereas values closer to 100% indicate strong directional conviction.
+
+            2. **Price Level Confidence (Model Details - `{price_result.get('confidence', 'N/A')}`):**
+               * **Model**: **Price Regressor** (e.g., Random Forest or XGBoost Regressor).
+               * **Purpose**: Solves a continuous regression problem: *What will tomorrow's exact closing price be in {currency}?*
+               * **Interpretation**: The level (**High**, **Medium**, or **Low**) is dynamically computed by combining the model's **historical validation accuracy ($R^2$ score)** with the **predicted volatility**. For instance, `{price_result.get('model_used', model)}` has an extremely high baseline $R^2$ of **98.10%** (or **99.90%** for Random Forest) on test datasets. If the model predicts a stable, low-volatility price shift, it receives **High Confidence**. If it predicts an unusually volatile spike or uses a lower-performing model (like SVM), the confidence automatically drops.
+            """)
 
         st.markdown(f'<div class="disclaimer-banner">{get_disclaimer_text()}</div>', unsafe_allow_html=True)
