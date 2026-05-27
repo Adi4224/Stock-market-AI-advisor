@@ -6,7 +6,7 @@
 ![ML](https://img.shields.io/badge/Machine%20Learning-scikit--learn-brightgreen.svg)
 ![XGBoost](https://img.shields.io/badge/XGBoost-2.0+-green.svg)
 ![NLP](https://img.shields.io/badge/NLP-VADER-yellowgreen.svg)
-![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 
 > ⚠️ **Disclaimer**: This application is for educational purposes only and does not provide financial advice. Past performance does not guarantee future results. Always consult a qualified financial advisor before making investment decisions.
 
@@ -351,7 +351,7 @@ Unsupervised clustering algorithm that partitions users into k groups based on s
 
 ## 👤 Author
 
-**Stock Market AI Advisor Team**
+**Adithya Dadi**
 - Machine Learning Internship Assessment Project
 - Domain: Stock Analysis / Finance / NLP / Customer Analytics
 - Year: 2026
@@ -369,7 +369,3 @@ Unsupervised clustering algorithm that partitions users into k groups based on s
 - Always consult a qualified financial advisor before making investment decisions.
 
 ---
-
-## 📄 License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
