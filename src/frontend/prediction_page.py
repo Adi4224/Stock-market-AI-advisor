@@ -25,7 +25,7 @@ def render():
         st.error(f"⚠️ Could not load prediction pipeline: {e}")
         return
 
-    col1, col2, col3 = st.columns([2, 1, 1])
+    col1, col2, col3, col4 = st.columns([1.5, 1.1, 1.1, 0.8])
     with col1:
         ticker = st.selectbox(
             "Select Ticker",
@@ -42,6 +42,10 @@ def render():
                              format_func=lambda x: {"random_forest": "🌲 Random Forest", "xgboost": "🚀 XGBoost", "svm": "🔮 SVM"}[x],
                              key="pred_model")
     with col3:
+        horizon = st.selectbox("Horizon", ["1 Day", "1 Week", "1 Month"],
+                             format_func=lambda x: {"1 Day": "📅 1 Day", "1 Week": "⏳ 1 Week", "1 Month": "📆 1 Month"}[x],
+                             key="pred_horizon")
+    with col4:
         st.markdown("<br>", unsafe_allow_html=True)
         predict_btn = st.button("🔮 Predict", type="primary", key="pred_button")
 
@@ -51,9 +55,9 @@ def render():
         return
 
     if predict_btn:
-        with st.spinner(f"Analyzing {ticker} with {model.replace('_', ' ').title()}..."):
-            price_result = predict_stock_price(ticker, model)
-            move_result = predict_stock_movement(ticker, model)
+        with st.spinner(f"Analyzing {ticker} with {model.replace('_', ' ').title()} over {horizon}..."):
+            price_result = predict_stock_price(ticker, model, horizon)
+            move_result = predict_stock_movement(ticker, model, horizon)
 
         if 'error' in price_result and 'predicted_price' not in price_result:
             st.error(f"Prediction failed: {price_result['error']}")
