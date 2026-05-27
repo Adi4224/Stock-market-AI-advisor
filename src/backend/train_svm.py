@@ -16,7 +16,7 @@ import pandas as pd
 import pickle
 from datetime import datetime
 
-from sklearn.svm import SVR, SVC
+from sklearn.svm import LinearSVR, SVC
 from sklearn.model_selection import GridSearchCV, TimeSeriesSplit
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
@@ -45,7 +45,7 @@ logger = logging.getLogger(__name__)
 
 def train_svr(X_train, y_train, X_test, y_test, param_grid=None):
     """
-    Train SVR with hyperparameter tuning via GridSearchCV.
+    Train high-performance LinearSVR with hyperparameter tuning via GridSearchCV.
 
     Args:
         X_train, y_train: Training data
@@ -59,15 +59,14 @@ def train_svr(X_train, y_train, X_test, y_test, param_grid=None):
     """
     if param_grid is None:
         param_grid = {
-            'kernel': ['rbf'],
-            'C': [1, 10, 100],
-            'gamma': ['scale', 'auto'],
-            'epsilon': [0.01, 0.1, 0.5],
+            'C': [0.1, 1.0, 10.0],
+            'epsilon': [0.0, 0.1],
+            'max_iter': [3000]
         }
 
     tscv = TimeSeriesSplit(n_splits=3)
     svr = GridSearchCV(
-        SVR(),
+        LinearSVR(random_state=42),
         param_grid,
         cv=tscv,
         scoring='neg_mean_squared_error',
@@ -81,7 +80,7 @@ def train_svr(X_train, y_train, X_test, y_test, param_grid=None):
     y_pred = svr.predict(X_test)
 
     metrics = {
-        'model': 'SVR',
+        'model': 'LinearSVR',
         'task': 'Regression',
         'mae': round(mean_absolute_error(y_test, y_pred), 4),
         'mse': round(mean_squared_error(y_test, y_pred), 4),
@@ -173,13 +172,7 @@ def train_and_evaluate(data_path=None):
             logger.error(f"Could not fetch data: {e}")
             return {'error': str(e)}
 
-    # Use single ticker
-    if 'Ticker' in df.columns:
-        selected = df['Ticker'].value_counts().index[0]
-        df = df[df['Ticker'] == selected].copy()
-        logger.info(f"Training SVM on: {selected}")
-
-    # Feature engineering
+    # Feature engineering (must be done on consecutive daily rows to preserve moving averages/RSI/MACD calculations)
     try:
         from src.backend.feature_engineering import add_technical_features, add_targets, get_feature_columns
         df = add_technical_features(df)
@@ -196,8 +189,15 @@ def train_and_evaluate(data_path=None):
         feature_cols = ['Open', 'High', 'Low', 'Close', 'Volume',
                         'daily_return', 'ma_7', 'ma_30', 'volatility']
 
-    df = df.dropna().reset_index(drop=True)
     available = [c for c in feature_cols if c in df.columns]
+    df = df.replace([np.inf, -np.inf], np.nan)
+    df = df.dropna(subset=available + ['next_day_close', 'movement']).reset_index(drop=True)
+
+    # Pool all stocks and downsample representationally ONLY after features are calculated
+    # Stride of 25 downsamples ~522,000 fully engineered rows to ~21,000 samples, preserving cycles and scaling
+    if len(df) > 30000:
+        logger.info(f"Downsampling global dataset from {len(df)} to keep SVM training highly responsive...")
+        df = df.iloc[::25].reset_index(drop=True)
     logger.info(f"Dataset: {len(df)} rows, {len(available)} features")
 
     # Train-test split (time-based)

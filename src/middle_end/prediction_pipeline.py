@@ -182,7 +182,7 @@ def _predict_svm(df, ticker, current_price, feature_cols, horizon='1 Day'):
     from src.middle_end.model_loader import load_model, load_scaler
 
     model = load_model('svm_regressor')
-    scaler = load_scaler('scaler')
+    scaler = load_scaler('svm_scaler')
     target_scaler = load_scaler('svm_target_scaler')
 
     if model is None:
@@ -196,7 +196,15 @@ def _predict_svm(df, ticker, current_price, feature_cols, horizon='1 Day'):
     prediction_scaled = float(model.predict(latest)[0])
 
     if target_scaler is not None:
-        predicted_price = float(target_scaler.inverse_transform([[prediction_scaled]])[0][0])
+        # Dynamically scale back using the active stock's historical mean & std to prevent single-stock domain shift
+        prices = df['Close'].tail(60).values
+        if len(prices) > 1:
+            active_mean = np.mean(prices)
+            active_std = np.std(prices)
+            active_std = max(active_std, active_mean * 0.01)
+            predicted_price = float(prediction_scaled * active_std + active_mean)
+        else:
+            predicted_price = float(target_scaler.inverse_transform([[prediction_scaled]])[0][0])
     else:
         predicted_price = prediction_scaled
 
