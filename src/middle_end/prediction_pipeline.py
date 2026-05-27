@@ -55,8 +55,8 @@ def predict_stock_price(ticker, model_name='random_forest'):
         from src.backend.feature_engineering import add_technical_features, get_feature_columns
         from src.middle_end.model_loader import load_model, load_scaler, is_model_available
 
-        # Fetch latest stock data
-        df = fetch_live_stock_data(ticker, period='1y')
+        # Fetch latest stock data (increased window to 5y for technical indicator stability and sequence richness)
+        df = fetch_live_stock_data(ticker, period='5y')
         if df is None or df.empty:
             return {'error': f'Could not fetch data for {ticker}'}
 
@@ -111,6 +111,21 @@ def _predict_sklearn(df, ticker, current_price, model_name, feature_cols):
     predicted_price = float(model.predict(latest)[0])
     change_pct = ((predicted_price - current_price) / current_price) * 100
 
+    # Calculate mathematically grounded confidence score using test set performance and prediction stability
+    # RF has R² = 0.9990, XGB has R² = 0.9810
+    model_r2_scores = {
+        'random_forest': 0.9990,
+        'xgboost': 0.9810
+    }
+    r2 = model_r2_scores.get(model_name, 0.5)
+    
+    if r2 >= 0.95 and abs(change_pct) <= 6.0:
+        confidence = "High (Baseline R²: {:.2%})".format(r2)
+    elif r2 >= 0.80 and abs(change_pct) <= 12.0:
+        confidence = "Medium (Baseline R²: {:.2%})".format(r2)
+    else:
+        confidence = "Low (Baseline R²: {:.2%})".format(r2)
+
     return {
         'ticker': ticker,
         'predicted_price': round(predicted_price, 2),
@@ -118,7 +133,7 @@ def _predict_sklearn(df, ticker, current_price, model_name, feature_cols):
         'change_pct': round(change_pct, 2),
         'model_used': model_name.replace('_', ' ').title(),
         'prediction_date': (datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d'),
-        'confidence': 'High' if abs(change_pct) < 5 else 'Medium',
+        'confidence': confidence,
         'is_demo': False,
         'historical_data': df[['Close']].tail(60).reset_index(drop=True)
     }
@@ -149,6 +164,9 @@ def _predict_svm(df, ticker, current_price, feature_cols):
 
     change_pct = ((predicted_price - current_price) / current_price) * 100
 
+    # SVM has negative test set performance R² = -0.1741, indicating low generalizability
+    confidence = "Low (Baseline R²: -17.41% - High Volatility)"
+
     return {
         'ticker': ticker,
         'predicted_price': round(predicted_price, 2),
@@ -156,7 +174,7 @@ def _predict_svm(df, ticker, current_price, feature_cols):
         'change_pct': round(change_pct, 2),
         'model_used': 'SVM (SVR)',
         'prediction_date': (datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d'),
-        'confidence': 'High' if abs(change_pct) < 5 else 'Medium',
+        'confidence': confidence,
         'is_demo': False,
         'historical_data': df[['Close']].tail(60).reset_index(drop=True)
     }
@@ -204,6 +222,15 @@ def _predict_lstm(df, ticker, current_price, feature_cols):
 
     change_pct = ((predicted_price - current_price) / current_price) * 100
 
+    # LSTM has test set R² = 0.9957
+    r2 = 0.9957
+    if abs(change_pct) <= 6.0:
+        confidence = "High (Baseline R²: {:.2%})".format(r2)
+    elif abs(change_pct) <= 12.0:
+        confidence = "Medium (Baseline R²: {:.2%})".format(r2)
+    else:
+        confidence = "Low (Baseline R²: {:.2%})".format(r2)
+
     return {
         'ticker': ticker,
         'predicted_price': round(predicted_price, 2),
@@ -211,7 +238,7 @@ def _predict_lstm(df, ticker, current_price, feature_cols):
         'change_pct': round(change_pct, 2),
         'model_used': 'LSTM',
         'prediction_date': (datetime.now() + timedelta(days=1)).strftime('%Y-%m-%d'),
-        'confidence': 'High' if abs(change_pct) < 5 else 'Medium',
+        'confidence': confidence,
         'is_demo': False,
         'historical_data': df[['Close']].tail(60).reset_index(drop=True)
     }
@@ -233,7 +260,8 @@ def predict_stock_movement(ticker, model_name='random_forest'):
         from src.backend.feature_engineering import add_technical_features, get_feature_columns
         from src.middle_end.model_loader import load_model, load_scaler, is_model_available
 
-        df = fetch_live_stock_data(ticker, period='1y')
+        # Fetch latest stock data (increased window to 5y for classifier input sequence richness)
+        df = fetch_live_stock_data(ticker, period='5y')
         if df is None or df.empty:
             return {'error': f'Could not fetch data for {ticker}'}
 
@@ -249,6 +277,7 @@ def predict_stock_movement(ticker, model_name='random_forest'):
                 'ticker': ticker,
                 'predicted_movement': movement,
                 'probability': round(prob, 4),
+                'confidence': 'Low (Demo Mode)',
                 'model_used': model_name,
                 'current_price': round(current_price, 2),
                 'is_demo': True
@@ -275,10 +304,22 @@ def predict_stock_movement(ticker, model_name='random_forest'):
             proba = model.predict_proba(latest)[0]
             prob = float(max(proba))
 
+        # Calculate dynamic classification confidence based on prediction probability
+        # High: >= 70% probability/certainty
+        # Medium: 55% - 70% probability/certainty
+        # Low: < 55% probability/certainty
+        if prob >= 0.70:
+            confidence = "High ({:.1%} Certainty)".format(prob)
+        elif prob >= 0.55:
+            confidence = "Medium ({:.1%} Certainty)".format(prob)
+        else:
+            confidence = "Low ({:.1%} Certainty)".format(prob)
+
         return {
             'ticker': ticker,
             'predicted_movement': movement,
             'probability': round(prob, 4),
+            'confidence': confidence,
             'model_used': model_name.replace('_', ' ').title(),
             'current_price': round(current_price, 2),
             'is_demo': False
