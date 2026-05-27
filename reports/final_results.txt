@@ -28,10 +28,10 @@ REGRESSION MODELS (Stock Price Prediction):
     R²:   0.9810
 
   SVM Regressor:
-    MAE:  52.7242
-    MSE:  11073.0248
-    RMSE: 105.2284
-    R²:   -0.1741
+    MAE:  1.0343
+    MSE:  57.7268
+    RMSE: 7.5978
+    R²:   0.9939
 
   LSTM:
     MAE:  6.2296
@@ -56,10 +56,10 @@ CLASSIFICATION MODELS (Movement Prediction):
     F1 Score:  0.5054
 
   SVM Classifier:
-    Accuracy:  0.5220
-    Precision: 0.5165
-    Recall:    0.3335
-    F1 Score:  0.4053
+    Accuracy:  0.5269
+    Precision: 0.5186
+    Recall:    0.4441
+    F1 Score:  0.4785
 
 BEST MODEL SELECTION:
 --------------------------------------------
