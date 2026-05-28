@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-05-27T20:18:26.746419",
+  "regression": {
+    "model": "LinearSVR",
+    "task": "Regression",
+    "mae": 1.0343,
+    "mse": 57.7268,
+    "rmse": 7.5978,
+    "r2": 0.9939,
+    "best_params": {
+      "C": 1.0,
+      "epsilon": 0.0,
+      "max_iter": 3000
+    }
+  },
+  "classification": {
+    "model": "SVC",
+    "task": "Classification",
+    "accuracy": 0.5269,
+    "precision": 0.5186,
+    "recall": 0.4441,
+    "f1": 0.4785,
+    "best_params": {
+      "C": 100,
+      "gamma": "auto",
+      "kernel": "rbf"
+    }
+  }
+}

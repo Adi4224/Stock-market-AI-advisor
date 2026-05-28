@@ -17,7 +17,7 @@ def test_predictions():
     
     for horizon in ["1 Day", "1 Week", "1 Month"]:
         print(f"\n>>> HORIZON: {horizon} <<<")
-        for model in ["random_forest", "xgboost"]:
+        for model in ["random_forest", "xgboost", "svm"]:
             print(f"\nModel: {model.upper()}")
             
             # Test price prediction
