@@ -59,6 +59,52 @@ def _render_overview(df):
     c3.metric("Best R²", f"{reg['r2'].max():.4f}" if 'r2' in reg.columns and not reg.empty else "N/A")
     c4.metric("Best F1", f"{cls['f1'].max():.4f}" if 'f1' in cls.columns and not cls.empty else "N/A")
 
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown('<div class="section-header">📚 Evaluation Metrics Guide</div>', unsafe_allow_html=True)
+    
+    col_reg, col_cls = st.columns(2)
+    with col_reg:
+        st.markdown("""
+        <div class="glass-card" style="height: 100%;">
+        <h4 style="margin-top:0; color:#818CF8;">📈 Regression Metrics (Price Level Forecasting)</h4>
+        <ul style="padding-left: 20px; line-height: 1.6;">
+            <li><b>Mean Absolute Error (MAE)</b>:<br>
+                <span class="muted">The average absolute difference between predicted and actual stock prices. Represents the expected average currency error per trade. Lower is better.</span>
+            </li><br>
+            <li><b>Mean Squared Error (MSE)</b>:<br>
+                <span class="muted">The average of squared errors. By squaring the differences, it heavily penalizes larger, highly volatile prediction errors. Lower is better.</span>
+            </li><br>
+            <li><b>Root Mean Squared Error (RMSE)</b>:<br>
+                <span class="muted">The square root of the MSE, bringing the metric back into the stock's actual currency denomination. Reflects standard deviation of price residuals. Lower is better.</span>
+            </li><br>
+            <li><b>Coefficient of Determination ($R^2$ Score)</b>:<br>
+                <span class="muted">The proportion of variance in stock prices explained by our technical indicators. 1.00 represents a perfect model, while 0.99 means the model successfully explains 99% of pricing patterns.</span>
+            </li>
+        </ul>
+        </div>
+        """, unsafe_allow_html=True)
+        
+    with col_cls:
+        st.markdown("""
+        <div class="glass-card" style="height: 100%;">
+        <h4 style="margin-top:0; color:#FBBF24;">📋 Classification Metrics (Directional Forecasting)</h4>
+        <ul style="padding-left: 20px; line-height: 1.6;">
+            <li><b>Accuracy (Hit Rate)</b>:<br>
+                <span class="muted">The percentage of correct directional calls (UP predicted correctly + DOWN predicted correctly) out of total forecasts. Measures basic hit rate. Higher is better.</span>
+            </li><br>
+            <li><b>Precision (Trade Selection Certainty)</b>:<br>
+                <span class="muted">The ratio of correct positive forecasts (correct UP calls) to all positive forecasts made. High precision reduces the risk of making false-alarm buying trades.</span>
+            </li><br>
+            <li><b>Recall (Sensitivity to Opportunities)</b>:<br>
+                <span class="muted">The ratio of correct positive forecasts to all actual upward market trading sessions. High recall ensures the model does not miss profitable market surges.</span>
+            </li><br>
+            <li><b>F1-Score (Robustness Index)</b>:<br>
+                <span class="muted">The harmonic mean of Precision and Recall. The single most balanced classification metric, critical for quantitative models when false buy-signals and missed opportunities are both costly.</span>
+            </li>
+        </ul>
+        </div>
+        """, unsafe_allow_html=True)
+
 
 def _render_regression(df, tmpl, accent, red, green):
     reg = df[df['task'] == 'Regression'].copy()
